@@ -1,0 +1,17 @@
+services:
+- type: web
+  name: minio
+  healthCheckPath: /minio/health/live
+  env: docker
+  dockerfilePath: ./Dockerfile
+  dockerContext: .
+  disk:
+    name: data
+    mountPath: /data
+  envVars:
+  - key: MINIO_ROOT_USER
+    generateValue: true
+  - key: MINIO_ROOT_PASSWORD
+    generateValue: true
+  - key: PORT
+    value: 10000
